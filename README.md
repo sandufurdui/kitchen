@@ -1,4 +1,4 @@
-# Dining
+# Kitchen
 To get started, run the dining.py from https://github.com/sandufurdui/dining
 (if you have installed locally python, run python dining.py)
 then run kitchen from https://github.com/sandufurdui/kitchen (python kitchen.py)
