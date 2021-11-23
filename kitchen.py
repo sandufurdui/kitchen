@@ -1,12 +1,22 @@
-
 import socket
+import json
+import pickle
+with open("menu.json", "r") as menu_json:
+    data = json.load(menu_json)
+    HEADERSIZE = 30
 
-HOST = 'localhost'  # The server's hostname or IP address
-PORT = 1500        # The port used by the server
+host = 'localhost'
+port = 4000
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((host, port))
+s.listen(5)
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(b'dining hall up at localhost:500')
-    data = s.recv(1024)
+while True:
+    # now our endpoint knows about the OTHER endpoint.
+    clientsocket, address = s.accept()
+    print(f"Connection from {address} has been established.")
 
-print('Received:', repr(data))
+    data
+    msg = pickle.dumps(data)
+    msg = bytes(f"{len(msg):<{HEADERSIZE}}", 'utf-8')+msg
+    clientsocket.send(msg)
